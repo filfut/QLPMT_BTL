@@ -1,0 +1,77 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}Thông Tin Người Dùng{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card p-4 shadow-lg" style="width: 600px; border-radius: 12px;">
+        <div class="text-center">
+            <label for="avatarUpload" style="cursor: pointer;">
+                <img id="avatarPreview" src="{{ pro.image }}" class="img-fluid rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover; border: 3px solid #007bff;">
+            </label>
+            <input type="file" id="avatarUpload" style="display: none;" accept="image/*">
+            <h2 id="name" class="text-primary fw-bold">{{ pro.name }}</h2>
+            <h4 id="username" class="text-muted">@{{ pro.username }}</h4>
+        </div>
+        <div class="mt-3">
+            <p><i class="bi bi-gender-ambiguous text-info"></i> <strong>Giới tính:</strong> <span id="gender">{{ pro.gender }}</span></p>
+            <p><i class="bi bi-calendar-event text-info"></i> <strong>Ngày sinh:</strong> <span id="birth_date">{{ pro.birth_date }}</span></p>
+            <p><i class="bi bi-telephone text-info"></i> <strong>Điện thoại:</strong> <span id="phone">{{ pro.phone }}</span></p>
+            <p><i class="bi bi-geo-alt text-info"></i> <strong>Địa chỉ:</strong> <span id="address">{{ pro.address }}</span></p>
+        </div>
+        <div class="text-center mt-3">
+            <button id="editBtn" class="btn btn-warning">Chỉnh sửa</button>
+            <button id="saveBtn" class="btn btn-success d-none">Lưu</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.getElementById('avatarUpload').addEventListener('change', function(event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('avatarPreview').src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+    });
+
+    document.getElementById('editBtn').addEventListener('click', function() {
+        document.getElementById('editBtn').classList.add('d-none');
+        document.getElementById('saveBtn').classList.remove('d-none');
+
+        ['name', 'username', 'gender', 'birth_date', 'phone', 'address'].forEach(id => {
+            let element = document.getElementById(id);
+            let input = document.createElement('input');
+            input.type = 'text';
+            input.className = id === 'name' || id === 'username' ? 'form-control text-center fw-bold' : 'form-control';
+            input.value = element.innerText;
+            element.replaceWith(input);
+            input.id = id;
+        });
+    });
+
+    document.getElementById('saveBtn').addEventListener('click', function() {
+        document.getElementById('editBtn').classList.remove('d-none');
+        document.getElementById('saveBtn').classList.add('d-none');
+
+        ['name', 'username', 'gender', 'birth_date', 'phone', 'address'].forEach(id => {
+            let input = document.getElementById(id);
+            let newElement = document.createElement(id === 'name' ? 'h2' : id === 'username' ? 'h4' : 'span');
+            newElement.innerText = input.value;
+            newElement.id = id;
+
+            if (id === 'name') {
+                newElement.className = 'text-primary fw-bold';
+            } else if (id === 'username') {
+                newElement.className = 'text-muted';
+            }
+
+            input.replaceWith(newElement);
+        });
+    });
+</script>
+
+{% endblock %}

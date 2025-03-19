@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Fugacar",
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1740037805/apple-iphone-16-pro-natural-titanium_lcnlu2.webp",
+    "quantity": 10,
+    "med_type_id": 3
+  },
+  {
+    "id": 2,
+    "name": "Paracetamol",
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1729842193/iPhone_15_Pro_Natural_1_ltf9vr.webp",
+    "quantity": 10,
+    "med_type_id": 3
+  },
+  {
+    "id": 3,
+    "name": "Prospan",
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1729091983/61896OtgvGL_xi09hb.jpg",
+    "quantity": 10,
+    "med_type_id": 2
+  },
+  {
+    "id": 4,
+    "name": "Yumangel",
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1729091944/refurb-iphone-13-pro-max-blue-2023_tuhb2j.jpg",
+    "quantity": 10,
+    "med_type_id": 3
+  },
+  {
+    "id": 5,
+    "name": "Espumisan L",
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1729091915/refurb-iphone-14-pro-spaceblack-202404_zrfqfz.jpg",
+    "quantity": 10,
+    "med_type_id": 2
+  },
+  {
+    "id": 6,
+    "name": "Multivitamin +Zn +D3 Royal Care",
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1729091967/419VTYVRD1L._AC__vih8qs.jpg",
+    "quantity": 10,
+    "med_type_id": 1
+  },
+  {
+    "id": 7,
+    "name": "B Complex Vitamin Royal Care",
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1729091967/419VTYVRD1L._AC__vih8qs.jpg",
+    "quantity": 10,
+    "med_type_id": 1
+  },
+  {
+    "id": 8,
+    "name": "Siro Special Kid Multivitamines",
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1729091967/419VTYVRD1L._AC__vih8qs.jpg",
+    "quantity": 10,
+    "med_type_id": 2
+  },
+  {
+    "id": 9,
+    "name": "Immuvita Easylife",
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1729091967/419VTYVRD1L._AC__vih8qs.jpg",
+    "quantity": 10,
+    "med_type_id": 1
+  },
+  {
+    "id": 10,
+    "name": "Premom Gold Jpanwell",
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1729091967/419VTYVRD1L._AC__vih8qs.jpg",
+    "quantity": 10,
+    "med_type_id": 1
+  }
+]

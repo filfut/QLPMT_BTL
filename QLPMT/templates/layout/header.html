@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-sm navbar-dark bg-primary py-3 shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="/">E-Commerce</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active text-light" href="/">Trang chủ</a>
+                </li>
+
+                {% if current_user.role == 4 %}
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/medicines-medicine_types">Danh mục thuốc</a>
+                </li>
+                {% for mt in med_types %}
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/medicines-medicine_types?med_type_id={{ mt.id }}">{{ mt.name }}</a>
+                </li>
+                {% endfor %}
+                {% endif %}
+
+                {% if current_user.is_authenticated %}
+                <!-- User Profile Section -->
+                <li class="nav-item d-flex align-items-center">
+                    <a class="nav-link d-flex align-items-center text-light" href="/profile">
+                        <img src="{{ current_user.avatar }}" class="rounded-circle me-2" width="30" height="30" style="border: 2px solid white;">
+                        <span class="fw-bold">{{ current_user.name }}</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-danger" href="/logout">
+                        <i class="bi bi-box-arrow-right"></i> Đăng xuất
+                    </a>
+                </li>
+                {% else %}
+                <!-- Login/Registration Section -->
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/login">
+                        <i class="bi bi-person-circle"></i> Đăng nhập
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-light" href="/register">
+                        <i class="bi bi-pencil-square"></i> Đăng ký
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+            {% if current_user.is_authenticated %}
+            <!-- Search Form -->
+            <form class="d-flex ms-auto">
+                <input class="form-control me-2" type="text" name="q" placeholder="Nhập từ khóa" style="border-radius: 8px;">
+                <button class="btn btn-light text-primary fw-bold" type="submit">Tìm</button>
+            </form>
+            {% endif %}
+        </div>
+    </div>
+</nav>
+
+
