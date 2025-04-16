@@ -1,0 +1,302 @@
+[
+  {
+    "id": 1,
+    "name": "Fugacar",
+    "price": 22000,
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744657712/00010739_fugacar_500mg_9298_62ad_large_a8a3bffa62_knf0h8.webp",
+    "ingredients": "Mebendazole",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Fugacar là sản phẩm của Janssen – Thái Lan với thành phần chính là Mebendazole, có tác dụng điều trị nhiễm một hay nhiều loại giun đường ruột: Giun đũa, giun tóc, giun móc, giun kim.Thuốc xổ giun Fugacar có 3 loại khác nhau về hương vị: Fugacar không có hương vị, Fugacar (viên nén nhai được) hương vị trái cây, Fugacar (viên nén nhai được) hương vị sô-cô-la.",
+    "med_type_id": 1
+  },
+  {
+    "id": 2,
+    "name": "Natecal D3",
+    "price": 5000,
+    "ingredients": "Calcium, Cholecalciferol",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744658937/00018614_natecal_d3_italfarmaco_60v_9538_60a6_large_78c5193fcc_lxhsri.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Thuốc Natecal D3 là sản phẩm của Italfarmaco S.p.A, có thành phần chính gồm Calcium (dưới dạng calci carbonat) 600 mg và Cholecalciferol (vitamin D3) 400 IU. Thuốc dùng để điều trị và phục hồi sự thiếu vitamin D kết hợp với calci ở người cao tuổi, bổ sung vitamin D và calci như hỗ trợ cho điều trị đặc hiệu ở bệnh nhân loãng xương mà được chẩn đoán là thiếu vitamin D kết hợp với calci hoặc có nguy cơ cao thiếu vitamin D và calci.",
+    "med_type_id": 1
+  },
+  {
+    "id": 3,
+    "name": "Eyebi",
+    "price": 4500,
+    "ingredients": "Vitamin E, Myrtillus",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744659134/00002962_eyebi_50mg_3248_5b1e_large_b144ed6dfa_idzhdp.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "EyeBi là sản phẩm của của Công ty Phil Inter Pharma, thành phần chính là cao Vaccinium myrtillus và DL-alpha-tocopheryl acetate (vitamin E), là thuốc dùng điều trị hỗ trợ các chứng rối loạn thị giác lúc mờ tối và ban đêm, chứng cận thị.",
+    "med_type_id": 1
+  },
+  {
+    "id": 4,
+    "name": "Maipochi",
+    "price": 4583,
+    "ingredients": "Tocopherol acetate, Magnesium oxide",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744659594/00027740_maipochi_phil_inter_pharma_12x5_3512_60a7_large_b244531c8f_sqhjpk.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Thuốc Maipochi được sản xuất bởi Công ty Phil Inter Pharma, thuốc được sử dụng trong cải thiện tình trạng run giật cơ do thiếu magnesi; cung cấp chất khoáng thiết yếu trong trường hợp hoạt động thể lực quá mức; hỗ trợ điều trị rối loạn chức năng tuần hoàn ngoại biên (chứng khập khiễng cách hồi, chứng tê cóng chân tay); điều trị tình trạng thiếu vitamin E.",
+    "med_type_id": 1
+  },
+  {
+    "id": 5,
+    "name": "PM Meno-Care",
+    "price": 5667,
+    "ingredients": "Black cohosh, Dong Quai, Gừng, Salvia officinalis, Red Clover",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744659732/00004841_meno_care_60_vien_4006_5ca5_large_8300f34e88_msoklx.jpg",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Thuốc PM Meno - Care được sản xuất bởi Công ty PharmaMetics Products A Division of Max Biocare Pty Ltd, với thành phần chính là nhiều loại dược liệu tự nhiên chất lượng cao, được dùng để điều trị các triệu chứng rối loạn do chu kỳ hành kinh và mãn kinh giúp cải thiện sức khỏe của phụ nữ một cách hiệu quả và an toàn.",
+    "med_type_id": 1
+  },
+  {
+    "id": 6,
+    "name": "Liverwell",
+    "price": 4600,
+    "ingredients": "N-acetyl Cysteine, Niacin, Biotin, Riboflavin, Thiamin, Kế sữa, Câu kỷ tử, Sài hồ bắc, Glycine, Glutamic Acid, Cysteine, Ngũ vị tử, Hoàng cầm, alpha Lipoic acid, Tá dược vừa đủ",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744659904/DSC_09567_22f71e6e16_nc47yz.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Liverwell Nutrimed giúp giải độc gan, bảo vệ gan, tăng cường chức năng gan.",
+    "med_type_id": 1
+  },
+  {
+    "id": 7,
+    "name": "Tamlan Health Functional Pine Oil",
+    "price": 5000,
+    "ingredients": "Tá dược vừa đủ, Vitamin E, Tinh dầu thông",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744660157/00016165_tamlan_healthy_functional_pine_oil_dau_thong_do_100v_7614_5cd2_large_1c9ce2eefb_neyhg1.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Tamlan Health Functional Pine Oil (Dầu Thông Đỏ) giúp chống oxy hóa mạnh, trung hòa các gốc tự do và mỡ máu, bảo vệ hệ miễn dịch, giảm các tác động của gốc tự do và giảm cholesterol, xơ cứng động mạch. Tăng cường chức năng gan cho những người uống nhiều rượu bia, hút thuốc lá nhiều.",
+    "med_type_id": 1
+  },
+  {
+    "id": 8,
+    "name": "Maecran",
+    "price": 6200,
+    "ingredients": "Mangan, Đồng, Kẽm, Beta carotene, Tocopherol acetate, Selenium Sulfide, Vitamin C",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744660268/00004648_maecran_kolmar_2476_5b27_large_7ece20449b_aulghp.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Maecran của Nhà sản xuất Kolmar, thành phần chính tocopherol acetate, là thuốc dùng để điều trị chống lão hóa. Cung cấp vitamin trong các trường hợp sau: Phụ nữ có thai, đang cho con bú, suy nhược, lão suy. Cải thiện các triệu chứng sau trong trường hợp rối loạn hệ tuần hoàn ngoại biên và trong thời kỳ bắt đầu suy yếu: Đau xóc ở cổ và vai, tê cóng và ớn lạnh tay chân…",
+    "med_type_id": 1
+  },
+  {
+    "id": 9,
+    "name": "Meflavon",
+    "price": 1433,
+    "ingredients": "Rutin",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744660409/00004785_meflavon_500mg_6444_5b23_large_060170bce2_fgtg7f.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Thuốc Meflavon là thuốc bảo vệ tĩnh mạch và mao mạch, được chỉ định dùng trong các trường hợp điều trị hội chứng chảy máu, xơ cứng mạch máu, ban xuất huyết, chứng giãn tĩnh mạch (phù, đau, nặng chân, bệnh trĩ,...). Thuốc có dạng viên nén bao phim hình oval, màu cafe sữa nhạt.",
+    "med_type_id": 1
+  },
+  {
+    "id": 10,
+    "name": "KiddieCal",
+    "price": 9167,
+    "ingredients": "Calcium, Vitamin D3, Vitamin K1",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744660624/00004135_kiddieical_678mg_5935_6424_large_242dc8d8e0_n8c48i.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "PM Kiddiecal của Công ty Catalent Australia Pty. Ltd., thành phần chính Calcium, phosphorus, cholecalciferol (vitamin D3), phytomenadione (vitamin K1) là thuốc bổ sung calci và vitamin D cho trẻ em trong thời kỳ tăng trưởng, phụ nữ có thai và cho con bú, và hỗ trợ điều trị loãng xương.",
+    "med_type_id": 1
+  },
+  {
+    "id": 11,
+    "name": "Maecran",
+    "price": 31000,
+    "ingredients": "Mangan, Đồng, Kẽm, Beta carotene, Tocopherol acetate, Selenium Sulfide, Vitamin C",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744660268/00004648_maecran_kolmar_2476_5b27_large_7ece20449b_aulghp.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Maecran của Nhà sản xuất Kolmar, thành phần chính tocopherol acetate, là thuốc dùng để điều trị chống lão hóa. Cung cấp vitamin trong các trường hợp sau: Phụ nữ có thai, đang cho con bú, suy nhược, lão suy. Cải thiện các triệu chứng sau trong trường hợp rối loạn hệ tuần hoàn ngoại biên và trong thời kỳ bắt đầu suy yếu: Đau xóc ở cổ và vai, tê cóng và ớn lạnh tay chân…",
+    "med_type_id": 2
+  },
+  {
+    "id": 12,
+    "name": "Meflavon",
+    "price": 21500,
+    "ingredients": "Rutin",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744660409/00004785_meflavon_500mg_6444_5b23_large_060170bce2_fgtg7f.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Thuốc Meflavon là thuốc bảo vệ tĩnh mạch và mao mạch, được chỉ định dùng trong các trường hợp điều trị hội chứng chảy máu, xơ cứng mạch máu, ban xuất huyết, chứng giãn tĩnh mạch (phù, đau, nặng chân, bệnh trĩ,...). Thuốc có dạng viên nén bao phim hình oval, màu cafe sữa nhạt.",
+    "med_type_id": 2
+  },
+  {
+    "id": 13,
+    "name": "Maipochi",
+    "price": 22917,
+    "ingredients": "Tocopherol acetate, Magnesium oxide",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744659594/00027740_maipochi_phil_inter_pharma_12x5_3512_60a7_large_b244531c8f_sqhjpk.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Thuốc Maipochi được sản xuất bởi Công ty Phil Inter Pharma, thuốc được sử dụng trong cải thiện tình trạng run giật cơ do thiếu magnesi; cung cấp chất khoáng thiết yếu trong trường hợp hoạt động thể lực quá mức; hỗ trợ điều trị rối loạn chức năng tuần hoàn ngoại biên (chứng khập khiễng cách hồi, chứng tê cóng chân tay); điều trị tình trạng thiếu vitamin E.",
+    "med_type_id": 2
+  },
+  {
+    "id": 14,
+    "name": "Eyebi",
+    "price": 45000,
+    "ingredients": "Vitamin E, Myrtillus",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744659134/00002962_eyebi_50mg_3248_5b1e_large_b144ed6dfa_idzhdp.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "EyeBi là sản phẩm của của Công ty Phil Inter Pharma, thành phần chính là cao Vaccinium myrtillus và DL-alpha-tocopheryl acetate (vitamin E), là thuốc dùng điều trị hỗ trợ các chứng rối loạn thị giác lúc mờ tối và ban đêm, chứng cận thị.",
+    "med_type_id": 2
+  },
+  {
+    "id": 15,
+    "name": "Paracetamol",
+    "price": 5000,
+    "ingredients": "Paracetamol",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744658266/00032865_paracetamol_stada_500mg_10x10_4111_61af_large_6bbfac12ff_bnqdlg.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Thuốc Paracetamol 500mg Stada là sản phẩm của Công ty TNHH Liên doanh Stada Việt Nam có thành phần dược chất chính Paracetamol được sử dụng để điều trị các cơn đau từ nhẹ đến trung bình bao gồm đau đầu, đau nửa đầu, đau thần kinh, đau răng, đau họng, đau do hành kinh, đau nhức, giảm triệu chứng đau nhức do thấp khớp, cảm cúm, cảm sốt và cảm lạnh.",
+    "med_type_id": 2
+  },
+  {
+    "id": 16,
+    "name": "Enzicoba",
+    "price": 77500,
+    "ingredients": "Crom, Selen, Acid Ascorbic",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744661238/00020369_enzicoba_9883_60a4_large_35e51253b9_aan1jt.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Enzicoba của Công ty cổ phần dược phẩm CPC1 Hà Nội, thành phần chính gồm selen (trong nấm men), crom (trong nấm men) và acid ascorbic. Thuốc được sử dụng để ngăn ngừa quá trình lão hóa; tăng cường hệ miễn dịch, tăng sức đề kháng cho cơ thể; cải thiện, nâng đỡ chức năng gan trong các bệnh gan cấp tính, mạn tính, tổn thương gan do rượu bia, thuốc hoặc hóa chất; phòng chống và hỗ trợ điều trị các bệnh ung thư; phòng chống các bệnh về tim mạch; chống khô da, chống sạm da, giảm độ nhạy cảm của da khi chiếu tia phóng xạ cũng như khi tiếp xúc tia tử ngoại của ánh sáng mặt trời; phòng ngừa đục nhân mắt, mờ mắt, căng nhức mỏi mắt, phòng ngừa các bệnh lão về mắt; hạn chế biến chứng võng mạc ở bệnh nhân tiểu đường; bổ sung vitamin C và các nguyên tố vi lượng.",
+    "med_type_id": 2
+  },
+  {
+    "id": 17,
+    "name": "Zedcal-OP",
+    "price": 32000,
+    "ingredients": "Calcium Carbonate, Zinc sulfate, Kẽm",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744661634/00008207_zedcal_op_1816_63c6_large_fe5002186b_oiay3j.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Zedcal Op của công ty Meyer Organics Pvt. Ltd., thành phần chính chứa canxium carbonate, calcitriol, zinc sulphate monohydrate, là thuốc dùng để trị loãng xương. Zedcal Op được bào chế dưới dạng viên nén bao phim, hộp 5 vỉ x 6 viên.",
+    "med_type_id": 2
+  },
+  {
+    "id": 18,
+    "name": "Cabovis",
+    "price": 9200,
+    "ingredients": "Băng phiến, Đại hoàng, Cát cánh, Hoàng cầm, Thạch Cao",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744661774/IMG_7049_cc2f3b8670_mlilbb.jpg",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "CABOVIS do Công ty cổ phần Dược phẩm OPC sản xuất với công dụng thanh nhiệt giải độc, điều trị các chứng do nóng nhiệt trong người gây nên như: Viêm họng, sưng đau chân răng, lở loét miệng, mụn nhọt, táo bón…",
+    "med_type_id": 2
+  },
+  {
+    "id": 19,
+    "name": "Long Huyết P/H",
+    "price": 4600,
+    "ingredients": "Cao khô huyết giác",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744661917/IMG_1039_fba416224d_aulpel.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Thuốc Long Huyết P/H của Công ty TNHH Đông dược Phúc Hưng, với thành phần chính cao khô huyết giác (Lignum Dracaenae cambodianae). Long Huyết là phần thân hóa gỗ màu đỏ của cây Dracaenae cambodianae già cỗi, sống hàng trăm năm trên các núi đá. Từ lâu nó đã được biết đến như là vị thuốc quý bí truyền của các võ sư, thầy thuốc dùng đặc trị nội, ngoại thương như: Giảm đau, cầm máu, giúp nhanh liền vết thương do dao kiếm, các chấn thương do va đập mạnh gây bầm dập, tụ máu, sưng đau...",
+    "med_type_id": 2
+  },
+  {
+    "id": 20,
+    "name": "Tot'héma",
+    "price": 60000,
+    "ingredients": "Mangan, Đồng gluconat, Sắt gluconat",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744662065/DSC_04101_788e84a74a_m3zqks.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Tot’hema của Innothera Chouzy - Pháp, thành phần chính Fe gluconat, Manganese gluconat, Copper gluconat, là thuốc dùng để điều trị thiếu máu do thiếu sắt, điều trị dự phòng thiếu sắt cho những người có nguy cơ cao thiếu sắt như: Dự phòng thiếu chất sắt ở phụ nữ có thai, trẻ em và thiếu niên, trẻ em còn bú sinh thiếu tháng, trẻ sinh đôi hoặc có mẹ bị thiếu chất sắt, khi nguồn cung cấp chất sắt từ thức ăn không đủ đảm bảo cung cấp chất sắt.",
+    "med_type_id": 2
+  },
+  {
+    "id": 21,
+    "name": "PVP - IODINE 10%",
+    "price": 8500,
+    "ingredients": "Povidone-iodine",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744662486/00029312_pvp_iodine_10_danapha_20ml_2403_62ad_large_cbe2977575_qych0z.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Thuốc Pvp - Iodine 10% do Công ty Cổ phần Dược DANAPHA sản xuất có công dụng sát trùng vết thương hoặc vết bỏng bề mặt, mức độ nhẹ, điều trị hỗ trợ các tình trạng da, niêm mạc tổn thương để tránh nhiễm khuẩn, sát trùng da, niêm mạc trước khi phẫu thuật, lau rửa các dụng cụ y tế trước khi tiệt khuẩn. Dung dịch màu đỏ sẫm, mùi đặc biệt của iod.",
+    "med_type_id": 3
+  },
+  {
+    "id": 22,
+    "name": "Povidine 10%",
+    "price": 4600,
+    "ingredients": "Povidone-iodine",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744662574/00006052_povidine_8ml_8232_6103_large_eb34f300d4_vz26bd.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Dung dịch Povidine 10% hay còn được gọi là thuốc đỏ hoặc cồn đỏ, được sản xuất bởi Công ty Cổ phần Dược phẩm Dược liệu Pharmedic, thành phần chính là povidon iod, được chỉ định sát khuẩn để giúp ngăn ngừa nhiễm khuẩn ở vết cắt, vết trầy và vết bỏng nhỏ; sát khuẩn da trước khi phẫu thuật; giúp giảm các vi khuẩn có khả năng gây nhiễm trùng da.",
+    "med_type_id": 3
+  },
+  {
+    "id": 23,
+    "name": "Farzincol",
+    "price": 26000,
+    "ingredients": "Farzincol",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744663006/00002991_farzincol_90ml_5887_62a7_large_aef5f909e7_rsqttf.jpg",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Farzincol Siro của Công ty Cổ Phần Dược Phẩm Dược Liệu Pharmedic thành phần chính kēm sulfat monohydrat là thuốc bổ sung khoáng chất được sử dụng để phòng ngừa và điều trị thiếu kẽm trong một số trường hợp như suy dinh dưỡng, tiêu chảy cấp và mạn tính.",
+    "med_type_id": 3
+  },
+  {
+    "id": 24,
+    "name": "SIRO Q+",
+    "price": 256000,
+    "ingredients": "Oligosaccharide, Cao khô lá thường xuân, Keo Ong, Rễ Cam Thảo, Vỏ quế, Chiết xuất từ hoa cúc La Mã, bột chiết xuất thực vật tổng hợp, Hoa cúc tím, Quả la hán",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744663103/DSC_05009_c7a02043dc_efjgol.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Thực phẩm bảo vệ sức khỏe Siro Q+ hỗ trợ tốt cho đường hô hấp; hỗ trợ giúp giảm các triệu chứng do ho gây ra.",
+    "med_type_id": 3
+  },
+  {
+    "id": 25,
+    "name": "Bông Sen",
+    "price": 1000000,
+    "ingredients": "Nhân Sâm, Đương quy, Ô mai, Sinh khương, Mật ong, Bạch truật, Hải diêm, Nhục thung dung",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744663222/DSC_03256_b379a2d196_azndxd.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Thuốc nước uống Bông Sen là sản phẩm của Fataco, có thành phần chính là Nhân Sâm, Đương quy, Ô mai, Sinh khương, Mật ong, Bạch truật, Hải diêm, Nhục thung dung. Đây là thuốc được sử dụng để hỗ trợ cắt cơn cai nghiện ma túy, dùng cho người mới nghiện hoặc nghiện lâu năm.",
+    "med_type_id": 3
+  },
+  {
+    "id": 26,
+    "name": "WellKid Multi-Vitamin Liquid",
+    "price": 402000,
+    "ingredients": "Kẽm, Mạch Nha, Vitamin C, Niacin, Sắt, Vitamin E, Pantothenic acid, Vitamin A, Vitamin B2, Vitamin B1, Đồng, Folic Acid, Kali iodide, Vitamin D3, Vitamin B12, Vitamin B6",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744663340/DSC_00021_d385412740_d8tvks.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Wellkid Multi-Vitamin Liquid bổ sung vitamin, khoáng chất cho trẻ em, giúp tăng cường sức khỏe, nâng cao sức đề kháng.",
+    "med_type_id": 3
+  },
+  {
+    "id": 27,
+    "name": "Brauer Kids Manuka Honey Dry Cough",
+    "price": 5000000,
+    "ingredients": "Althaea officinalis, Sambucus nigra, Betacarotene, Colecalciferol, Kẽm, Mật ong, Rumex crispus flower/leaf/stem extract",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744663466/00033691_brauer_manuka_honey_dry_cough_100ml_4471_623c_large_bae6733811_pmnymb.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Siro ho cho bé Brauer Manuka Honey Dry Cough hỗ trợ làm giảm các triệu chứng ho khan và giảm đau rát họng ở trẻ em.",
+    "med_type_id": 3
+  },
+  {
+    "id": 28,
+    "name": "Smartbibi Zinc",
+    "price": 275000,
+    "ingredients": "Chiết xuất hoa cúc (Matricaria chamomilla L.), Vitamin C, Kẽm bisglycinate",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744663598/zinc_4_098450ce4b_jws8pd.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Smartbibi Zinc hỗ trợ bổ sung Kẽm, Vitamin C giúp tăng sức đề kháng; Hỗ trợ cải thiện tình trạng biếng ăn, chậm lớn ở trẻ thiếu kẽm.",
+    "med_type_id": 3
+  },
+  {
+    "id": 29,
+    "name": "Omega Vit Plus+",
+    "price": 245000,
+    "ingredients": "Deionized Water, Glycerole - E422, Sorbitol-E420, Omega 3, polyoxyethylene sorbitan monoleate-E433, orange aroma, tutti fruitti aroma",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744663704/DSC_02718_c134627072_yc9glg.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Omega Vit Plus giúp bổ sung một số vitamin, khoáng chất và acid béo Omega 3 cho cơ thể. Hỗ trợ tăng cường sức đề kháng, tốt cho não bộ và mắt.",
+    "med_type_id": 3
+  },
+  {
+    "id": 30,
+    "name": "Long Đởm Giải Độc Gan",
+    "price": 80000,
+    "ingredients": "Diệp hạ châu, Atisô, Long đởm thảo, Chi tử, Nhân trần, Trạch tả, Đại hoàng, Sinh Địa, Hoàng cầm, Sài Hồ, Cam thảo",
+    "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744663823/DSC_01245_b217d58a12_lmkkmr.webp",
+    "usage_instructions": "Xem trên bao bì",
+    "description": "Long Đởm Giải Độc Gan Bình Đông có tác dụng hỗ trợ giải độc, thanh nhiệt, mát gan và tăng cường chức năng gan.",
+    "med_type_id": 3
+  }
+]

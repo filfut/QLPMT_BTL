@@ -1,0 +1,33 @@
+{%extends 'layout/base.html'%}
+
+{%block content%}
+<h1 class="text-center text-info mt-3">Danh mục thuốc</h1>
+
+{%if pages > 1 %}
+<ul class="pagination mt-3">
+    {%for i in range(1, pages + 1) %}
+    <li class="page-item">
+        <a class="page-link" href="/medicine-catalog?page={{i}}">{{i}}</a>
+    </li>
+    {%endfor%}
+</ul>
+{%endif%}
+
+<div class="row">
+    {%for med in medicines %}
+    <div class="col-md-3 col-12" style="padding: 0.7rem">
+        <div class="card">
+            <img class="card-img-top" src="{{med.image}}" alt="{{med.name}}">
+            <div class="card-body">
+                <h4 class="card-title">{{med.name}}</h4>
+                <p class="card-text">{{"{:,.0f}".format(med.price)}} VNĐ</p>
+                <a href="/medicines/{{med.id}}" class="btn btn-primary">Xem chi tiết</a>
+                <a href="javascript:;" class="btn btn-danger" onclick="addToPrescription({{med.id}}, '{{med.name}}', {{med.price}}, 'quantity{{ med.id }}')">
+                    Thêm vào đơn thuốc
+                </a>
+            </div>
+        </div>
+    </div>
+    {%endfor%}
+</div>
+{%endblock%}

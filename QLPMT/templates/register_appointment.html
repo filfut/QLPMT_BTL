@@ -1,0 +1,17 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<h2 class="text-center text-success mt-4">Đăng ký lịch khám</h2>
+
+{% if err_msg %}
+<div class="alert alert-danger">{{ err_msg }}</div>
+{% endif %}
+
+<form method="POST">
+    <div class="mb-3">
+        <label for="appointment_date" class="form-label">Ngày khám:</label>
+        <input type="date" class="form-control" id="appointment_date" name="appointment_date" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Đăng ký</button>
+</form>
+{% endblock %}

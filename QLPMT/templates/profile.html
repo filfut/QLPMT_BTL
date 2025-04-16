@@ -1,0 +1,71 @@
+{% extends 'layout/base.html' %}
+
+{% block title %}
+Thông tin cá nhân
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center">Thông tin cá nhân</h2>
+
+    {% if err_msg %}
+    <div class="alert alert-danger">
+        {{ err_msg }}
+    </div>
+    {% endif %}
+
+    <form method="POST" enctype="multipart/form-data">
+        <!-- Họ và tên -->
+        <div class="mb-3">
+            <label for="name" class="form-label">Họ và tên</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{ user.name }}" required>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" value="{{ user.email }}" required>
+        </div>
+
+        <!-- Giới tính -->
+        <div class="mb-3">
+            <label for="gender" class="form-label">Giới tính</label>
+            <select class="form-select" id="gender" name="gender">
+                <option value="1" {% if user.gender == 1 %}selected{% endif %}>Nam</option>
+                <option value="2" {% if user.gender == 2 %}selected{% endif %}>Nữ</option>
+                <option value="3" {% if user.gender == 3 %}selected{% endif %}>Khác</option>
+            </select>
+        </div>
+
+        <!-- Ngày sinh -->
+        <div class="mb-3">
+            <label for="birth_date" class="form-label">Ngày sinh</label>
+            <input type="date" class="form-control" id="birth_date" name="birth_date" value="{{ user.birth_date }}">
+        </div>
+
+        <!-- Địa chỉ -->
+        <div class="mb-3">
+            <label for="address" class="form-label">Địa chỉ</label>
+            <input type="text" class="form-control" id="address" name="address" value="{{ user.address }}">
+        </div>
+
+        <!-- Số điện thoại -->
+        <div class="mb-3">
+            <label for="phone" class="form-label">Số điện thoại</label>
+            <input type="text" class="form-control" id="phone" name="phone" value="{{ user.phone }}">
+        </div>
+
+        <!-- Avatar -->
+        <div class="mb-3">
+            <label for="avatar" class="form-label">Hình đại diện</label>
+            <input type="file" class="form-control" id="avatar" name="avatar">
+            {% if user.avatar %}
+            <img src="{{ user.avatar }}" alt="Avatar" class="img-thumbnail mt-2" style="width: 150px;">
+            {% endif %}
+        </div>
+
+        <!-- Button Submit -->
+        <button type="submit" class="btn btn-primary">Cập nhật thông tin</button>
+    </form>
+</div>
+{% endblock %}

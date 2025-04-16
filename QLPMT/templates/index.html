@@ -1,0 +1,68 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    {% if current_user.is_authenticated %}
+        <!-- Đã đăng nhập -->
+        <p class="text-center">Chào mừng bạn đến với hệ thống quản lý phòng khám. Dưới đây là thông tin cá nhân của bạn:</p>
+
+        <div class="card mx-auto" style="max-width: 600px;">
+            <div class="card-body">
+                <!-- Avatar -->
+                <div class="text-center">
+                    <img src="{{ current_user.avatar }}" alt="User Avatar" class="img-thumbnail mb-3" style="width: 150px;">
+                </div>
+
+                <!-- Họ tên -->
+                <p><strong>Họ tên:</strong> {{ current_user.name }}</p>
+
+                <!-- Email -->
+                <p><strong>Email:</strong> {{ current_user.email }}</p>
+
+                <!-- Giới tính -->
+                <p><strong>Giới tính:</strong>
+                    {% if current_user.gender == 1 %} Nam
+                    {% elif current_user.gender == 2 %} Nữ
+                    {% elif current_user.gender == 3 %} Khác
+                    {% endif %}
+                </p>
+
+                <!-- Ngày sinh -->
+                <p><strong>Ngày sinh:</strong> {{ current_user.birth_date }}</p>
+
+                <!-- Địa chỉ -->
+                <p><strong>Địa chỉ:</strong> {{ current_user.address }}</p>
+
+                <!-- Số điện thoại -->
+                <p><strong>Số điện thoại:</strong> {{ current_user.phone }}</p>
+            </div>
+        </div>
+        {% if current_user.role == 1 %}
+            <!-- Kiểm tra trạng thái đăng ký khám -->
+            {% if appointment %}
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h4 class="text-center text-primary">Thông tin đăng ký khám</h4>
+                    <p><strong>Ngày khám:</strong> {{ appointment.appointment_date }}</p>
+                    <p><strong>Trạng thái:</strong>
+                        {% if appointment.status == 1 %} Đang chờ xác nhận
+                        {% elif appointment.status == 2 %} Đã xác nhận
+                        {% elif appointment.status == 3 %} Đã hủy
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+            {% else %}
+            <div class="text-center mt-4">
+                <p class="text-danger">Bạn chưa đăng ký lịch khám. Vui lòng <a href="/register-appointment" class="btn btn-primary">Đăng ký tại đây</a>.</p>
+            </div>
+            {% endif %}
+        {% endif %}
+    {% else %}
+        <!-- Chưa đăng nhập -->
+        <div class="text-center">
+            <p class="text-danger">Bạn chưa đăng nhập. Vui lòng <a href="/login" class="btn btn-primary">Đăng nhập tại đây</a>.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
