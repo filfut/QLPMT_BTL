@@ -1,6 +1,5 @@
 {%extends 'layout/base.html'%}
 
-<<<<<<< HEAD
 {%block title%}Chi tiết thuốc{%endblock%}
 
 {%block content%}
@@ -25,22 +24,6 @@
             onclick="addToPrescription({{ medicine.id }}, '{{ medicine.name }}', {{ medicine.price }}, 'quantity{{ medicine.id }}')">
             Thêm vào đơn thuốc
         </button>
-=======
-{%block title%}Chi Tiết Sản Phẩm{%endblock%}
-
-{%block content%}
-<div class="container py-4 mt-4" style="background-color: #f8f9fa; border-radius: 10px; border: 2px solid #28a745;">
-    <div class="row align-items-center">
-        <div class="col-md-6 text-center">
-            <img src="{{med.image}}" class="img-fluid" style="max-width: 90%; height: auto; border-radius: 10px; border: 2px solid #ced4da;">
-        </div>
-        <div class="col-md-6">
-            <h2 class="text-success fw-bold">{{med.name}}</h2>
-            <h4 class="text-danger fw-bold">{{med.price}} VND</h4>
-            <p class="text-muted">{{med.description}}</p>
-            <a href="#" class="btn btn-outline-success">Thêm vào đơn thuốc</a>
-        </div>
->>>>>>> 27697c343ee30c5ae7c35f759fb58dd33fa43f29
     </div>
 </div>
 {%endblock%}

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {%extends 'layout/base.html'%}
 
 {%block title%}Trang đăng nhập{%endblock%}
@@ -26,33 +25,3 @@
 </form>
 
 {%endblock%}
-=======
-{% extends 'layout/base.html' %}
-
-{% block title %}Trang Đăng Nhập{% endblock %}
-
-{% block content %}
-<div class="container d-flex justify-content-center align-items-center min-vh-100">
-    <div class="card p-4 shadow-lg" style="width: 400px; border-radius: 12px;">
-        <h2 class="text-center text-primary">Đăng Nhập</h2>
-        {% if err_msg %}
-        <div class="alert alert-danger">{{ err_msg }}</div>
-        {% endif %}
-        <form method="post" action="/login">
-            <div class="form-floating mb-3 position-relative">
-                <input type="text" class="form-control" id="username" placeholder="Nhập tên người dùng" name="username" required>
-                <label for="username"><i class="bi bi-person-fill"></i> Tên</label>
-            </div>
-            <div class="form-floating mb-3 position-relative">
-                <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" name="password" required>
-                <label for="password"><i class="bi bi-lock-fill"></i> Mật khẩu</label>
-            </div>
-            <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-primary">Đăng Nhập</button>
-            </div>
-        </form>
-        <p class="text-center mt-3">Chưa có tài khoản? <a href="/register" class="text-decoration-none">Đăng ký</a></p>
-    </div>
-</div>
-{% endblock %}
->>>>>>> 27697c343ee30c5ae7c35f759fb58dd33fa43f29

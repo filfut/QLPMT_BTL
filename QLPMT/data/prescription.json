@@ -1,9 +1,0 @@
-[
-  {
-    "id": 1,
-    "medical_record_id": 1,
-    "medicine_id": 2,
-    "dosage": 20,
-    "usage_instructions": "2 lần sáng và tối"
-  }
-]
