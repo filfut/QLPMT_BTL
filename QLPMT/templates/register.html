@@ -1,5 +1,6 @@
 {% extends 'layout/base.html' %}
 
+<<<<<<< HEAD
 {% block title %}Trang đăng ký{% endblock %}
 
 {% block content %}
@@ -43,4 +44,43 @@
         <button type="submit" class="btn btn-success">Đăng ký</button>
     </div>
 </form>
+=======
+{% block title %}Trang Đăng Ký{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center min-vh-100">
+    <div class="card p-4 shadow-lg" style="width: 400px; border-radius: 12px;">
+        <h2 class="text-center text-primary">Đăng Ký</h2>
+        {% if err_msg %}
+        <div class="alert alert-danger">{{ err_msg }}</div>
+        {% endif %}
+        <form method="post" action="/register" enctype="multipart/form-data">
+            <div class="form-floating mb-3 position-relative">
+                <input type="text" class="form-control" id="name" placeholder="Nhập họ tên" name="name" required>
+                <label for="name"><i class="bi bi-person-fill"></i> Họ tên</label>
+            </div>
+            <div class="form-floating mb-3 position-relative">
+                <input type="text" class="form-control" id="username" placeholder="Nhập tên đăng nhập" name="username" required>
+                <label for="username"><i class="bi bi-person-circle"></i> Tên đăng nhập</label>
+            </div>
+            <div class="form-floating mb-3 position-relative">
+                <input type="password" class="form-control" id="password" placeholder="Nhập mật khẩu" name="password" required>
+                <label for="password"><i class="bi bi-lock-fill"></i> Mật khẩu</label>
+            </div>
+            <div class="form-floating mb-3 position-relative">
+                <input type="password" class="form-control" id="confirm" placeholder="Nhập lại mật khẩu" name="confirm" required>
+                <label for="confirm"><i class="bi bi-lock-fill"></i> Nhập lại mật khẩu</label>
+            </div>
+            <div class="mb-3">
+                <label for="avatar" class="form-label">Ảnh đại diện</label>
+                <input type="file" class="form-control" id="avatar" name="avatar">
+            </div>
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-primary">Đăng Ký</button>
+            </div>
+        </form>
+        <p class="text-center mt-3">Đã có tài khoản? <a href="/login" class="text-decoration-none">Đăng nhập</a></p>
+    </div>
+</div>
+>>>>>>> 27697c343ee30c5ae7c35f759fb58dd33fa43f29
 {% endblock %}

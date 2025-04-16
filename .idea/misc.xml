@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Black">
+<<<<<<< HEAD
     <option name="sdkName" value="Python 3.13 (QuanLyPhongMachTu) (2)" />
   </component>
+=======
+    <option name="sdkName" value="Python 3.13 (QuanLyPhongMachTu)" />
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="Python 3.13 (QuanLyPhongMachTu) (2)" project-jdk-type="Python SDK" />
+>>>>>>> 27697c343ee30c5ae7c35f759fb58dd33fa43f29
 </project>

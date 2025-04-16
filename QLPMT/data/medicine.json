@@ -2,6 +2,7 @@
   {
     "id": 1,
     "name": "Fugacar",
+<<<<<<< HEAD
     "price": 22000,
     "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744657712/00010739_fugacar_500mg_9298_62ad_large_a8a3bffa62_knf0h8.webp",
     "ingredients": "Mebendazole",
@@ -57,20 +58,73 @@
     "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744659904/DSC_09567_22f71e6e16_nc47yz.webp",
     "usage_instructions": "Xem trên bao bì",
     "description": "Liverwell Nutrimed giúp giải độc gan, bảo vệ gan, tăng cường chức năng gan.",
+=======
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1740037805/apple-iphone-16-pro-natural-titanium_lcnlu2.webp",
+    "quantity": 10,
+    "med_type_id": 3
+  },
+  {
+    "id": 2,
+    "name": "Paracetamol",
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1729842193/iPhone_15_Pro_Natural_1_ltf9vr.webp",
+    "quantity": 10,
+    "med_type_id": 3
+  },
+  {
+    "id": 3,
+    "name": "Prospan",
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1729091983/61896OtgvGL_xi09hb.jpg",
+    "quantity": 10,
+    "med_type_id": 2
+  },
+  {
+    "id": 4,
+    "name": "Yumangel",
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1729091944/refurb-iphone-13-pro-max-blue-2023_tuhb2j.jpg",
+    "quantity": 10,
+    "med_type_id": 3
+  },
+  {
+    "id": 5,
+    "name": "Espumisan L",
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1729091915/refurb-iphone-14-pro-spaceblack-202404_zrfqfz.jpg",
+    "quantity": 10,
+    "med_type_id": 2
+  },
+  {
+    "id": 6,
+    "name": "Multivitamin +Zn +D3 Royal Care",
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1729091967/419VTYVRD1L._AC__vih8qs.jpg",
+    "quantity": 10,
+>>>>>>> 27697c343ee30c5ae7c35f759fb58dd33fa43f29
     "med_type_id": 1
   },
   {
     "id": 7,
+<<<<<<< HEAD
     "name": "Tamlan Health Functional Pine Oil",
     "price": 5000,
     "ingredients": "Tá dược vừa đủ, Vitamin E, Tinh dầu thông",
     "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744660157/00016165_tamlan_healthy_functional_pine_oil_dau_thong_do_100v_7614_5cd2_large_1c9ce2eefb_neyhg1.webp",
     "usage_instructions": "Xem trên bao bì",
     "description": "Tamlan Health Functional Pine Oil (Dầu Thông Đỏ) giúp chống oxy hóa mạnh, trung hòa các gốc tự do và mỡ máu, bảo vệ hệ miễn dịch, giảm các tác động của gốc tự do và giảm cholesterol, xơ cứng động mạch. Tăng cường chức năng gan cho những người uống nhiều rượu bia, hút thuốc lá nhiều.",
+=======
+    "name": "B Complex Vitamin Royal Care",
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1729091967/419VTYVRD1L._AC__vih8qs.jpg",
+    "quantity": 10,
+>>>>>>> 27697c343ee30c5ae7c35f759fb58dd33fa43f29
     "med_type_id": 1
   },
   {
     "id": 8,
+<<<<<<< HEAD
     "name": "Maecran",
     "price": 6200,
     "ingredients": "Mangan, Đồng, Kẽm, Beta carotene, Tocopherol acetate, Selenium Sulfide, Vitamin C",
@@ -87,10 +141,25 @@
     "image": "https://res.cloudinary.com/dwrl7e8y8/image/upload/v1744660409/00004785_meflavon_500mg_6444_5b23_large_060170bce2_fgtg7f.webp",
     "usage_instructions": "Xem trên bao bì",
     "description": "Thuốc Meflavon là thuốc bảo vệ tĩnh mạch và mao mạch, được chỉ định dùng trong các trường hợp điều trị hội chứng chảy máu, xơ cứng mạch máu, ban xuất huyết, chứng giãn tĩnh mạch (phù, đau, nặng chân, bệnh trĩ,...). Thuốc có dạng viên nén bao phim hình oval, màu cafe sữa nhạt.",
+=======
+    "name": "Siro Special Kid Multivitamines",
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1729091967/419VTYVRD1L._AC__vih8qs.jpg",
+    "quantity": 10,
+    "med_type_id": 2
+  },
+  {
+    "id": 9,
+    "name": "Immuvita Easylife",
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1729091967/419VTYVRD1L._AC__vih8qs.jpg",
+    "quantity": 10,
+>>>>>>> 27697c343ee30c5ae7c35f759fb58dd33fa43f29
     "med_type_id": 1
   },
   {
     "id": 10,
+<<<<<<< HEAD
     "name": "KiddieCal",
     "price": 9167,
     "ingredients": "Calcium, Vitamin D3, Vitamin K1",
@@ -300,3 +369,12 @@
     "med_type_id": 3
   }
 ]
+=======
+    "name": "Premom Gold Jpanwell",
+    "price": 29000000,
+    "image": "https://res.cloudinary.com/dy1unykph/image/upload/v1729091967/419VTYVRD1L._AC__vih8qs.jpg",
+    "quantity": 10,
+    "med_type_id": 1
+  }
+]
+>>>>>>> 27697c343ee30c5ae7c35f759fb58dd33fa43f29

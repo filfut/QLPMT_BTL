@@ -5,10 +5,18 @@
   },
   {
     "id": 2,
+<<<<<<< HEAD
     "name": "Vỹ"
   },
   {
     "id": 3,
     "name": "Chai"
+=======
+    "name": "Chai"
+  },
+  {
+    "id": 3,
+    "name": "Vỹ"
+>>>>>>> 27697c343ee30c5ae7c35f759fb58dd33fa43f29
   }
 ]

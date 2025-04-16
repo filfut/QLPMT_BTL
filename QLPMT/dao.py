@@ -1,4 +1,5 @@
 import hashlib
+<<<<<<< HEAD
 from datetime import date
 
 from QLPMT import db, app
@@ -48,10 +49,29 @@ def add_user(name, email, password, avatar=None, role=1, gender=1, birth_date=No
 
 
 # Lấy người dùng theo ID
+=======
+import json
+from QLPMT import db, app
+from models import MedicineType, Medicine, User
+
+
+def load_medicine_type():
+    return MedicineType.query.all()
+
+
+def add_user(name, username, password, avatar):
+    u = User(name=name, username=username, password=str(hashlib.md5(password.encode('utf-8')).hexdigest()),
+             avatar=avatar)
+    db.session.add(u)
+    db.session.commit()
+
+
+>>>>>>> 27697c343ee30c5ae7c35f759fb58dd33fa43f29
 def get_user_by_id(user_id):
     return User.query.get(user_id)
 
 
+<<<<<<< HEAD
 def auth_user(email, password):
     """
     Xác thực người dùng bằng email và mật khẩu.
@@ -69,20 +89,41 @@ def is_email_taken(email):
 
 # Lấy danh sách thuốc với bộ lọc
 def load_medicines(q=None, med_type_id=None, page=None):
+=======
+def count_medicine():
+    return Medicine.query.count()
+
+
+def auth_user(username, password):
+    password = str(hashlib.md5(password.encode('utf-8')).hexdigest())
+    return User.query.filter(User.username.__eq__(username), User.password.__eq__(password)).first()
+
+
+def load_medicines(q=None, med_type_id=None, page=None):
+
+>>>>>>> 27697c343ee30c5ae7c35f759fb58dd33fa43f29
     query = Medicine.query
     if q:
         query = query.filter(Medicine.name.contains(q))
     if med_type_id:
+<<<<<<< HEAD
         query = query.filter(Medicine.med_type_id == med_type_id)
 
     if page:
         size = app.config.get("PAGE_SIZE", 20)  # Giá trị mặc định nếu không thiết lập PAGE_SIZE
+=======
+        query = query.filter(Medicine.med_type_id.__eq__(med_type_id))
+
+    if page:
+        size = app.config["PAGE_SIZE"]
+>>>>>>> 27697c343ee30c5ae7c35f759fb58dd33fa43f29
         start = (int(page) - 1) * size
         query = query.slice(start, start + size)
 
     return query.all()
 
 
+<<<<<<< HEAD
 # Lấy thuốc theo ID
 def get_medicine_by_id(medicine_id):
     return Medicine.query.get(medicine_id)
@@ -252,3 +293,15 @@ if __name__ == "__main__":
     with app.app_context():
         # Testing example
         print("Danh sách ngày khám:", get_all_appointment_dates())
+=======
+def get_medicine_by_id(id):
+    return Medicine.query.get(id)
+
+def get_user_by_username(username):
+    """Trả về thông tin người dùng dựa trên username."""
+    return User.query.filter_by(username=username).first()
+
+if __name__ == "__main__":
+    with app.app_context():
+        print(get_user_by_username('admin'))
+>>>>>>> 27697c343ee30c5ae7c35f759fb58dd33fa43f29
