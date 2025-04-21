@@ -1,4 +1,4 @@
-function addToPrescription(id, name, price, quantityFieldId = null) {
+function addToMedicalRecord(id, name, price, quantityFieldId = null, unit, usageInstructions) {
     let quantity = 1; // Mặc định số lượng là 1 nếu không có ô nhập
     if (quantityFieldId) {
         let quantityInput = document.getElementById(quantityFieldId);
@@ -10,16 +10,16 @@ function addToPrescription(id, name, price, quantityFieldId = null) {
         return;
     }
 
-    fetch('/api/carts', {
+    fetch('/api/medical_records', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             id: id,
             name: name,
             price: parseFloat(price),
-            quantity: quantity
+            quantity: quantity,
+            unit: unit,
+            usageInstructions: usageInstructions
         })
     })
     .then(res => res.json())
@@ -27,26 +27,26 @@ function addToPrescription(id, name, price, quantityFieldId = null) {
         if (data.status === "error") {
             alert("Lỗi: " + data.message);
         } else {
-            alert("Thuốc đã được thêm vào giỏ hàng!");
+            alert(`Thuốc "${name}" (${unit}) đã được thêm vào phiếu khám!\nHướng dẫn: ${usageInstructions}`);
             document.querySelectorAll(".class_counter").forEach(counter => {
                 counter.innerText = data.total_quantity;
             });
         }
     })
     .catch(error => {
-        console.log("Lỗi khi gửi yêu cầu giỏ hàng: ", error);
+        console.log("Lỗi khi gửi yêu cầu phiếu khám:", error);
         alert("Có lỗi xảy ra, vui lòng thử lại!");
     });
 }
 
-function updateCart(id, obj) {
+function updateMedicalRecord(id, obj) {
     let quantity = parseInt(obj.value);
     if (isNaN(quantity) || quantity <= 0) {
         alert("Số lượng không hợp lệ!");
         return;
     }
 
-    fetch(`/api/cart/${id}`, {
+    fetch(`/api/medical_record/${id}`, {
         method: 'PUT',
         body: JSON.stringify({ "quantity": quantity }),
         headers: { "Content-Type": "application/json" }
@@ -66,14 +66,14 @@ function updateCart(id, obj) {
             });
         }
     }).catch(error => {
-        console.log("Lỗi cập nhật giỏ hàng: ", error);
+        console.log("Lỗi cập nhật phiếu khám: ", error);
         alert("Có lỗi xảy ra, vui lòng thử lại!");
     });
 }
 
-function deleteCart(id) {
-    if (confirm("Bạn có chắc chắn muốn xóa thuốc này khỏi giỏ hàng?")) {
-        fetch(`/api/cart/${id}`, { method: 'DELETE' })
+function deleteMedicalRecord(id) {
+    if (confirm("Bạn có chắc chắn muốn xóa thuốc này khỏi phiếu khám?")) {
+        fetch(`/api/medical_record/${id}`, { method: 'DELETE' })
         .then(res => {
             if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
             return res.json();
@@ -97,29 +97,74 @@ function deleteCart(id) {
             }
         })
         .catch(error => {
-            console.log("Lỗi xóa giỏ hàng: ", error);
+            console.log("Lỗi xóa phiếu khám: ", error);
             alert("Có lỗi xảy ra, vui lòng thử lại!");
         });
     }
 }
 
-function submitPrescription() {
-    if (confirm("Bạn có chắc chắn muốn xác nhận đơn thuốc?")) {
-        fetch("/api/submit-prescription", { method: "POST" })
-        .then(res => {
-            if (!res.ok) throw new Error(`HTTP error! Status: ${res.status}`);
-            return res.json();
+function storePatientInfo(id, name, appointmentDate) {
+    fetch('/api/session/store_patient', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: id, name: name, appointment_date: appointmentDate })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === "success") {
+            alert("Lập phiếu khám thành công!"); // Hiển thị thông báo
+        } else {
+            alert("Có lỗi xảy ra: " + data.message);
+        }
+    })
+    .catch(error => {
+        console.log("Lỗi khi lưu thông tin bệnh nhân vào session:", error);
+        alert("Có lỗi xảy ra, vui lòng thử lại!");
+    });
+}
+
+function autoSaveMedicalRecord() {
+    const symptoms = document.getElementById("symptoms").value;
+    const diagnosis = document.getElementById("diagnosis").value;
+
+    fetch('/api/save_medical_record_session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ symptoms: symptoms, diagnosis: diagnosis })
+    })
+    .catch(error => console.log("Lỗi khi lưu dữ liệu vào session:", error));
+}
+
+// Gắn sự kiện tự động lưu
+document.getElementById("symptoms").addEventListener("input", autoSaveMedicalRecord);
+document.getElementById("diagnosis").addEventListener("input", autoSaveMedicalRecord);
+
+function saveMedicalRecord() {
+    if (confirm("Bạn có chắc chắn muốn lưu phiếu khám?")) {
+        let totalAmount = document.querySelector(".class_amount").innerText.replace(" VNĐ", "").replace(/,/g, "").trim();
+
+        fetch("/api/save-medical-record", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                symptoms: document.getElementById("symptoms").value.trim(),
+                diagnosis: document.getElementById("diagnosis").value.trim(),
+                total_amount: totalAmount  // ✅ Gửi tổng tiền thuốc từ giao diện lên API
+            })
         })
+        .then(res => res.json())
         .then(data => {
-            if (data.status === 200) {
+            if (data.status === "success") {
+                alert("Phiếu khám đã được lưu thành công!");
                 location.reload();
             } else {
-                alert("Lỗi! Vui lòng thử lại.");
+                alert(`Lỗi: ${data.message}`);
             }
         })
         .catch(error => {
-            console.log("Lỗi khi gửi đơn thuốc: ", error);
+            console.log("Lỗi khi lưu phiếu khám: ", error);
             alert("Có lỗi xảy ra, vui lòng thử lại!");
         });
     }
 }
+

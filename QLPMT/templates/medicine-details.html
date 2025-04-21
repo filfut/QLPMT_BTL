@@ -21,8 +21,8 @@
             <input type="number" id="quantity{{medicine.id}}" class="form-control" value="1" min="1">
         </div>
         <button class="btn btn-success mt-3"
-            onclick="addToPrescription({{ medicine.id }}, '{{ medicine.name }}', {{ medicine.price }}, 'quantity{{ medicine.id }}')">
-            Thêm vào đơn thuốc
+                onclick="addToMedicalRecord({{ medicine.id }}, '{{ medicine.name }}', '{{ medicine.price }}', 'quantity{{ medicine.id }}', '{{ medicine.medicine_type.name }}', '{{ medicine.usage_instructions }}')">
+            Thêm vào phiếu khám
         </button>
     </div>
 </div>

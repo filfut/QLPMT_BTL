@@ -1,8 +1,10 @@
 import hashlib
-from datetime import date
+from datetime import date, datetime
+
+from sqlalchemy.orm import joinedload, aliased
 
 from QLPMT import db, app
-from models import User, MedicineType, Medicine, Appointment, Receipt, ReceiptDetail, MedicalRecord, AppointmentStatus
+from models import User, MedicineType, Medicine, Appointment, Receipt, ReceiptDetail, MedicalRecord, AppointmentStatus, Patient
 from flask_login import current_user
 from sqlalchemy import func
 
@@ -247,6 +249,127 @@ def delete_old_appointments():
     except Exception as e:
         db.session.rollback()
         print(f"Lỗi khi xóa lịch hẹn cũ: {e}")
+
+def get_today_confirmed_appointments():
+    """Lấy danh sách bệnh nhân khám hôm nay đã xác nhận."""
+    today = date.today()
+    return db.session.query(Appointment).filter(
+        Appointment.appointment_date == today,
+        Appointment.status == 2
+    ).all()
+
+def save_medical_record(patient_info, symptoms, diagnosis, total_amount):
+    """Lưu phiếu khám và tự động thiết lập ngày khám là hôm nay."""
+    try:
+        if not patient_info:
+            return {'status': 'error', 'message': 'Không có thông tin bệnh nhân'}
+
+        # ✅ Mặc định ngày khám là hôm nay
+        appointment_date = datetime.today().date()
+
+        # ✅ Nếu bệnh nhân chưa có lịch hẹn hôm nay, tạo mới
+        appointment = db.session.query(Appointment).filter_by(
+            patient_id=patient_info['id'],
+            appointment_date=appointment_date
+        ).first()
+
+        if not appointment:
+            appointment = Appointment(
+                patient_id=int(patient_info['id']),
+                appointment_date=appointment_date,
+                status=1  # Trạng thái mặc định: Chưa xác nhận
+            )
+            db.session.add(appointment)
+            db.session.commit()
+
+        # ✅ Lưu phiếu khám với ngày khám là hôm nay
+        medical_record = MedicalRecord(
+            patient_id=int(patient_info['id']),
+            doctor_id=int(current_user.id),
+            symptoms=symptoms,
+            diagnosis=diagnosis,
+            total_medicine_cost=total_amount,  # ✅ Lưu tổng tiền
+            appointment_date=appointment_date  # ✅ Lưu ngày khám mặc định hôm nay
+        )
+        db.session.add(medical_record)
+        db.session.commit()
+
+        return {'status': 'success', 'message': 'Phiếu khám đã được lưu', 'medical_record_id': medical_record.id}
+
+    except Exception as e:
+        print(f"Lỗi khi lưu phiếu khám: {e}")
+        db.session.rollback()
+        return {'status': 'error', 'message': 'Lỗi khi lưu phiếu khám'}
+
+def save_receipt_details(medical_record_id, medical_record_data):
+    try:
+        if not medical_record_data:
+            return {'status': 'error', 'message': 'Không có danh sách thuốc'}
+
+        for item in medical_record_data.values():
+            receipt_detail = ReceiptDetail(
+                quantity=item['quantity'],
+                unit_price=item['quantity'] * item['price'],
+                medical_record_id=medical_record_id,
+                medicine_id=item['id']
+            )
+            db.session.add(receipt_detail)
+
+        db.session.commit()
+        return {'status': 'success', 'message': 'Danh sách thuốc đã được lưu'}
+
+    except Exception as e:
+        print(f"Lỗi khi lưu ReceiptDetail: {e}")
+        db.session.rollback()
+        return {'status': 'error', 'message': 'Lỗi khi lưu danh sách thuốc'}
+
+def delete_patient_appointment(patient_id):
+    try:
+        appointment = db.session.query(Appointment).filter_by(patient_id=patient_id).first()
+        if appointment:
+            db.session.delete(appointment)
+            db.session.commit()
+            return {'status': 'success', 'message': 'Lịch hẹn đã bị xóa'}
+        return {'status': 'error', 'message': 'Không tìm thấy lịch hẹn'}
+    except Exception as e:
+        print(f"Lỗi khi xóa lịch hẹn: {e}")
+        db.session.rollback()
+        return {'status': 'error', 'message': 'Lỗi khi xóa lịch hẹn'}
+
+from sqlalchemy.orm import aliased
+
+def get_all_medical_records_today():
+    """Lấy phiếu khám hôm nay, đảm bảo dữ liệu là đối tượng `MedicalRecord`."""
+    try:
+        today = datetime.today().date()
+
+        # ✅ Alias cho bảng `User`
+        patient_alias = aliased(User)
+        doctor_alias = aliased(User)
+
+        # ✅ Chỉ lấy `MedicalRecord`, không lấy `Row object`
+        records = db.session.query(
+            MedicalRecord.id,
+            MedicalRecord.patient_id,
+            MedicalRecord.doctor_id,
+            MedicalRecord.symptoms,
+            MedicalRecord.diagnosis,
+            MedicalRecord.medical_fee,
+            MedicalRecord.total_medicine_cost,
+            MedicalRecord.appointment_date,
+            patient_alias.name.label("patient_name"),
+            doctor_alias.name.label("doctor_name")
+        ).join(
+            patient_alias, patient_alias.id == MedicalRecord.patient_id
+        ).join(
+            doctor_alias, doctor_alias.id == MedicalRecord.doctor_id
+        ).filter(func.date(MedicalRecord.appointment_date) == today).all()
+
+        return records  # ✅ Trả về danh sách đầy đủ các thuộc tính của phiếu khám
+    except Exception as e:
+        print(f"Lỗi khi lấy phiếu khám hôm nay: {e}")
+        return []
+
 
 if __name__ == "__main__":
     with app.app_context():

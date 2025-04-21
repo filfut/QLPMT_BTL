@@ -1,0 +1,90 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<h1 class="text-center text-info mt-3">PHIẾU KHÁM</h1>
+
+{% if session.get('patient_info') %}
+<div class="card mb-4 shadow-sm">
+    <div class="card-header bg-primary text-white text-center">
+        <h4>Thông tin bệnh nhân</h4>
+    </div>
+    <div class="card-body">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <p><strong>Họ tên:</strong> {{ session['patient_info'].name }}</p>
+            </div>
+            <div class="col-md-6">
+                <p><strong>Ngày khám:</strong> {{ session['patient_info'].appointment_date }}</p>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label for="symptoms" class="form-label"><strong>Triệu chứng:</strong></label>
+                <textarea class="form-control" id="symptoms" name="symptoms" rows="2" required>
+                    {{ session['patient_info'].get('symptoms', '').strip().replace("\n", " ") }}
+                </textarea>
+            </div>
+            <div class="col-md-6">
+                <label for="diagnosis" class="form-label"><strong>Dự đoán bệnh:</strong></label>
+                <textarea class="form-control" id="diagnosis" name="diagnosis" rows="2" required>
+                    {{ session['patient_info'].get('diagnosis', '').strip().replace("\n", " ") }}
+                </textarea>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+{% if session.get('medical_record') %}
+<h3 class="text-center text-success">Danh sách thuốc</h3>
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>STT</th>
+            <th>Tên thuốc</th>
+            <th>Đơn vị</th>
+            <th>Đơn giá</th>
+            <th>Số lượng</th>
+            <th>Cách dùng</th>
+            <th></th> <!-- Cột xóa thuốc -->
+        </tr>
+    </thead>
+    <tbody>
+        {% for c in session['medical_record'].values() %}
+        <tr id="medicine{{ c.id }}">
+            <td>{{ loop.index }}</td> <!-- STT tự động đánh số -->
+            <td>{{ c.name }}</td>
+            <td>{{ c.unit }}</td> <!-- Đơn vị thuốc -->
+            <td>{{ "{:,.0f}".format(c.price) }} VNĐ</td>
+            <td>
+                <input class="form-control" oninput="updateMedicalRecord({{ c.id }}, this)" type="number" value="{{ c.quantity }}" min="1">
+            </td>
+            <td>{{ c.usageInstructions }}</td> <!-- Hướng dẫn sử dụng -->
+            <td>
+                <button class="btn btn-danger btn-sm" onclick="deleteMedicalRecord({{ c.id }})">&times;</button>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<div class="alert alert-info">
+    <h4>Tổng số lượng thuốc: <span class="class_counter">{{ medical_record_stats.total_quantity if medical_record_stats.total_quantity else 0 }}</span></h4>
+    <h4>Tổng tiền: <span class="class_amount">{{ "{:,.2f}".format(medical_record_stats.total_amount) if medical_record_stats.total_amount else 0 }}</span> VNĐ</h4>
+</div>
+
+{% if current_user.is_authenticated %}
+<div class="text-center">
+    <button class="btn btn-success btn-lg" onclick="saveMedicalRecord()">Lưu phiếu khám</button>
+</div>
+{% else %}
+<h4 class="text-center">Vui lòng <a href="/login?next=/medical_record">đăng nhập</a> để lưu phiếu khám</h4>
+{% endif %}
+
+{% else %}
+<div class="alert alert-danger text-center">
+    Chưa có thuốc nào trong phiếu khám!
+</div>
+{% endif %}
+
+{% endblock %}

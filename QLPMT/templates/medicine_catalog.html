@@ -22,8 +22,9 @@
                 <h4 class="card-title">{{med.name}}</h4>
                 <p class="card-text">{{"{:,.0f}".format(med.price)}} VNĐ</p>
                 <a href="/medicines/{{med.id}}" class="btn btn-primary">Xem chi tiết</a>
-                <a href="javascript:;" class="btn btn-danger" onclick="addToPrescription({{med.id}}, '{{med.name}}', {{med.price}}, 'quantity{{ med.id }}')">
-                    Thêm vào đơn thuốc
+                <a href="javascript:;" class="btn btn-danger"
+                   onclick="addToMedicalRecord({{med.id}}, '{{med.name}}', {{med.price}}, 'quantity{{ med.id }}', '{{med.medicine_type.name}}', '{{med.usage_instructions}}')">
+                    Thêm vào phiếu khám
                 </a>
             </div>
         </div>

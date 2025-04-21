@@ -70,7 +70,12 @@ class MedicalRecord(Base):
     doctor_id = Column(Integer, ForeignKey('user.id'), nullable=False)
     symptoms = Column(String(255), nullable=False)
     diagnosis = Column(String(255), nullable=False)
+    appointment_date = Column(Date, nullable=False, default=date.today, index = True)
+    medical_fee = Column(Integer, nullable=False, default=100000)
+    total_medicine_cost = Column(Integer, nullable=False, default=0)
+    paid = Column(Boolean, default=False)  # Mặc định là chưa thanh toán
     receipts = relationship('Receipt', backref='medical_record', lazy='joined')
+    details = relationship('ReceiptDetail', backref='medical_record', lazy='joined')
 
 # Cuộc hẹn
 class Appointment(Base):
@@ -117,6 +122,7 @@ class Receipt(Base):
     __tablename__ = "receipt"
     medical_record_id = Column(Integer, ForeignKey('medical_record.id'), nullable=False)
     employee_id = Column(Integer, ForeignKey('user.id'), nullable=False)
+    total_amount = Column(Integer, nullable=False)
 
 # Tạo cơ sở dữ liệu
 if __name__ == "__main__":

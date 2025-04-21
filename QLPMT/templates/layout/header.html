@@ -23,8 +23,17 @@
                     <a class="nav-link" href="/appointment-list">Danh sách khám</a>
                 </li>
                 {% endif %}
+                <!-- Các liên kết chỉ hiển thị cho nhân viên -->
+                {% if current_user.role == 5 %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/today-medical-records">Danh sách phiếu khám</a>
+                </li>
+                {% endif %}
                 <!-- Các liên kết chỉ hiển thị cho bác sĩ -->
                 {% if current_user.role == 4 %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/doctor_today_patients">Danh sách bệnh nhân</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/medicine-catalog">Danh mục thuốc</a>
                 </li>
@@ -34,7 +43,7 @@
                 </li>
                 {% endfor %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/cart">Giỏ hàng</a>
+                    <a class="nav-link" href="/medical_record">Phiếu khám</a>
                 </li>
                 {% endif %}
 
