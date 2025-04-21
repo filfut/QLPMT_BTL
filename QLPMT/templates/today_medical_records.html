@@ -17,7 +17,6 @@
                 <th>Tiền Khám</th>
                 <th>Tổng Tiền (VND)</th>
                 <th>Trạng Thái</th>
-                <th>Hành Động</th>
             </tr>
         </thead>
         <tbody>
@@ -32,18 +31,18 @@
             <td class="fw-bold text-danger">{{ "{:,.0f}".format(record.medical_fee) }} VND</td> <!-- Định dạng tiền -->
             <td class="fw-bold text-danger">{{ "{:,.0f}".format(record.total_medicine_cost) }} VND</td> <!-- Định dạng tiền -->
             <td>
-                {% if record.paid %}
-                    <span class="badge bg-success">Đã thanh toán</span>
+                {% if record.paid|int == 1 %}
+                    <span class="badge bg-success">✅ Đã thanh toán</span>
                 {% else %}
-                    <span class="badge bg-warning text-dark">Chưa thanh toán</span>
+                    <span class="badge bg-warning text-dark">⏳ Chưa thanh toán</span>
                 {% endif %}
             </td>
             <td>
-                {% if not record.paid %}
-                    <button class="btn btn-success btn-sm" onclick="payMedicalRecord('{{ record.id }}')">💳 Thanh Toán</button>
-                {% else %}
-                    <button class="btn btn-secondary btn-sm" disabled>✅ Hoàn tất</button>
-                {% endif %}
+                <td>
+                    <button class="btn btn-success btn-sm" onclick="storePaymentInfo('{{ record.id }}', '{{ record.patient_name }}', '{{ record.appointment_date }}', '{{ record.total_medicine_cost }}', '{{ record.medical_fee }}')">
+                        💳 Thanh Toán
+                    </button>
+                </td>
             </td>
         </tr>
         {% endfor %}

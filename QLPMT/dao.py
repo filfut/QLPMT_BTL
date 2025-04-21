@@ -6,7 +6,7 @@ from sqlalchemy.orm import joinedload, aliased
 from QLPMT import db, app
 from models import User, MedicineType, Medicine, Appointment, Receipt, ReceiptDetail, MedicalRecord, AppointmentStatus, Patient
 from flask_login import current_user
-from sqlalchemy import func
+from sqlalchemy import func, cast, Date
 
 
 # Load danh mục loại thuốc
@@ -336,18 +336,16 @@ def delete_patient_appointment(patient_id):
         db.session.rollback()
         return {'status': 'error', 'message': 'Lỗi khi xóa lịch hẹn'}
 
-from sqlalchemy.orm import aliased
-
 def get_all_medical_records_today():
-    """Lấy phiếu khám hôm nay, đảm bảo dữ liệu là đối tượng `MedicalRecord`."""
+    """Lấy phiếu khám hôm nay và làm mới dữ liệu."""
     try:
         today = datetime.today().date()
-
-        # ✅ Alias cho bảng `User`
         patient_alias = aliased(User)
         doctor_alias = aliased(User)
 
-        # ✅ Chỉ lấy `MedicalRecord`, không lấy `Row object`
+        # ✅ Làm mới dữ liệu để lấy thông tin mới nhất
+        db.session.expire_all()
+
         records = db.session.query(
             MedicalRecord.id,
             MedicalRecord.patient_id,
@@ -357,6 +355,7 @@ def get_all_medical_records_today():
             MedicalRecord.medical_fee,
             MedicalRecord.total_medicine_cost,
             MedicalRecord.appointment_date,
+            MedicalRecord.paid,  # ✅ Đảm bảo lấy trạng thái thanh toán
             patient_alias.name.label("patient_name"),
             doctor_alias.name.label("doctor_name")
         ).join(
@@ -365,13 +364,34 @@ def get_all_medical_records_today():
             doctor_alias, doctor_alias.id == MedicalRecord.doctor_id
         ).filter(func.date(MedicalRecord.appointment_date) == today).all()
 
-        return records  # ✅ Trả về danh sách đầy đủ các thuộc tính của phiếu khám
+        return records
     except Exception as e:
         print(f"Lỗi khi lấy phiếu khám hôm nay: {e}")
         return []
 
+def save_receipt_and_update_record(medical_record_id, payment_data):
+    """Lưu vào bảng `Receipt` và cập nhật trạng thái `MedicalRecord`."""
+    try:
+        # ✅ Lưu hóa đơn vào `Receipt`
+        receipt = Receipt(
+            medical_record_id=medical_record_id,
+            employee_id=current_user.id,  # ✅ Lấy ID nhân viên hiện tại
+            total_amount=payment_data["total_amount"]
+        )
+        db.session.add(receipt)
+
+        # ✅ Cập nhật trạng thái phiếu khám
+        record = db.session.query(MedicalRecord).filter_by(id=medical_record_id).first()
+        if record:
+            record.paid = True
+        db.session.commit()
+
+        return {'status': 'success', 'message': f'Hóa đơn đã được lưu ({payment_data["total_amount"]} VND)'}
+    except Exception as e:
+        print(f"Lỗi khi lưu hóa đơn: {e}")
+        return {'status': 'error', 'message': 'Lỗi khi lưu hóa đơn'}
 
 if __name__ == "__main__":
     with app.app_context():
-        # Testing example
-        print("Danh sách ngày khám:", get_all_appointment_dates())
+        receipts = get_receipts_today()  # ✅ Gọi hàm đúng cách
+        print(f"Dữ liệu hóa đơn hôm nay: {receipts}")

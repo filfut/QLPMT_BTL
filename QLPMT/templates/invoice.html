@@ -1,0 +1,29 @@
+{% extends 'layout/base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center text-primary">🧾 Hóa Đơn Thanh Toán</h2>
+
+    <div class="card mx-auto" style="max-width: 500px;">
+        <div class="card-body">
+            <h4 class="card-title text-center">Bệnh nhân: {{ patient_name }}</h4>
+            <p><strong>Ngày khám:</strong> {{ appointment_date }}</p>
+            <p><strong>Tiền khám:</strong> {{ "{:,.0f}".format(total_medicine_cost | int) }} VND</p>
+            <p><strong>Tổng tiền thuốc:</strong> {{ "{:,.0f}".format(medical_fee | int) }} VND</p>
+            <hr>
+            <p class="text-danger fw-bold text-center">💰 Tổng cộng: {{ "{:,.0f}".format(total_amount) }} VND</p>
+            <hr>
+            <button class="btn btn-success btn-lg w-100" onclick="redirectToPayment('{{ medical_record_id }}')">
+                💳 Thanh Toán Ngay
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    function redirectToPayment(medicalRecordId) {
+        // ✅ Chuyển hướng sang trang thanh toán `payment.html`
+        window.location.href = `/payment?record_id=${medicalRecordId}`;
+    }
+</script>
+{% endblock %}

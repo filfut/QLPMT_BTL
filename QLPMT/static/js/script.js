@@ -168,3 +168,84 @@ function saveMedicalRecord() {
     }
 }
 
+function storePaymentInfo(medicalRecordId, patientName, appointmentDate, medicalFee, totalMedicineCost) {
+    let totalAmount = parseFloat(medicalFee) + parseFloat(totalMedicineCost); // ✅ Tính tổng tiền cần thanh toán
+
+    fetch('/api/session/store_payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            medical_record_id: medicalRecordId,
+            patient_name: patientName,
+            appointment_date: appointmentDate,
+            medical_fee: medicalFee,
+            total_medicine_cost: totalMedicineCost,
+            total_amount: totalAmount
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === "success") {
+            alert(`✔ Thông tin thanh toán đã được lưu!\nTên: ${patientName}\nNgày khám: ${appointmentDate}\nTổng tiền: ${totalAmount} VND`);
+        } else {
+            alert("Có lỗi xảy ra: " + data.message);
+        }
+    })
+    .catch(error => {
+        console.log("Lỗi khi lưu thông tin thanh toán vào session:", error);
+        alert("Có lỗi xảy ra, vui lòng thử lại!");
+    });
+}
+
+function storePaymentInfo(medicalRecordId, patientName, appointmentDate, medicalFee, totalMedicineCost) {
+    let totalAmount = parseFloat(medicalFee) + parseFloat(totalMedicineCost);
+
+    fetch('/api/session/store_payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            medical_record_id: medicalRecordId,
+            patient_name: patientName,
+            appointment_date: appointmentDate,
+            medical_fee: medicalFee,
+            total_medicine_cost: totalMedicineCost,
+            total_amount: totalAmount
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        if (data.status === "success") {
+            console.log("✅ Đã lưu session, chuyển hướng...");
+            window.location.href = `/invoice/${medicalRecordId}`;  // ✅ Chuyển hướng ngay sau khi lưu session
+        } else {
+            alert("Có lỗi xảy ra: " + data.message);
+        }
+    })
+    .catch(error => {
+        console.log("Lỗi khi lưu thông tin thanh toán vào session:", error);
+        alert("Có lỗi xảy ra, vui lòng thử lại!");
+    });
+}
+
+function redirectToPayment(medicalRecordId) {
+    if (confirm("📌 Xác nhận thanh toán hóa đơn?")) {
+        fetch('/api/process-payment', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ medical_record_id: medicalRecordId })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.status === "success") {
+                alert("✔ Hóa đơn đã được lưu vào hệ thống!");
+                window.location.href = "/today-medical-records";  // ✅ Chuyển về danh sách phiếu khám
+            } else {
+                alert("❌ Có lỗi xảy ra: " + data.message);
+            }
+        })
+        .catch(error => {
+            console.log("Lỗi khi xử lý thanh toán:", error);
+            alert("⚠ Có lỗi xảy ra, vui lòng thử lại!");
+        });
+    }
+}

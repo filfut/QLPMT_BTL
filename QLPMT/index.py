@@ -113,17 +113,29 @@ def logout_my_user():
     logout_user()
     return redirect('/login')
 
-@app.route('/login-admin', methods=['post'])
+from flask import request, redirect, session, flash
+from flask_login import login_user
+import dao
+
+@app.route('/login-admin', methods=['POST'])
 def login_admin_process():
     email = request.form.get('email')
     password = request.form.get('password')
 
     user = dao.auth_user(email=email, password=password)
     if user:
-        login_user(user)
+        if dao.check_user_role(user.id, 2):
+            login_user(user)
+            session['admin_logged_in'] = True
+            flash("Đăng nhập thành công!", "success")
+            return redirect('/admin')
+        else:
+            flash("Bạn không có quyền truy cập Admin!", "danger")
+            return redirect('/login')
     else:
-        err_msg = "Tài khoản hoặc mật khẩu không khớp!"
-    return redirect('/admin')
+        flash("Tài khoản hoặc mật khẩu không khớp!", "danger")
+        return redirect('/login')
+
 
 @app.route("/doctor_today_patients")
 @login_required  # Yêu cầu người dùng đăng nhập
@@ -167,6 +179,7 @@ def save_medical_record_session():
     except Exception as e:
         print(f"Lỗi khi lưu vào session: {e}")
         return jsonify({'status': 'error', 'message': 'Không thể lưu dữ liệu'}), 500
+
 @app.route('/api/medical_records', methods=['POST'])
 @login_required  # Chỉ cho phép người dùng đăng nhập thêm vào phiếu khám
 def add_to_medical_record():
@@ -451,6 +464,59 @@ def today_medical_records():
         medical_records=medical_records
     )
 
+@app.route('/api/session/store_payment', methods=['POST'])
+@login_required
+def store_payment_info():
+    """Lưu thông tin thanh toán vào session để sử dụng sau."""
+    try:
+        data = request.json
+        session['payment_info'] = {
+            'medical_record_id': data.get('medical_record_id'),
+            'patient_name': data.get('patient_name'),
+            'appointment_date': data.get('appointment_date'),
+            'medical_fee': data.get('medical_fee'),
+            'total_medicine_cost': data.get('total_medicine_cost'),
+            'total_amount': data.get('total_amount')
+        }
+        session.modified = True  # ✅ Đảm bảo cập nhật session
+
+        return jsonify({'status': 'success', 'message': 'Thông tin thanh toán đã được lưu vào session'})
+    except Exception as e:
+        print(f"Lỗi khi lưu session thanh toán: {e}")
+        return jsonify({'status': 'error', 'message': 'Không thể lưu thông tin thanh toán'}), 500
+
+@app.route('/invoice/<int:medical_record_id>', methods=['GET'])
+@login_required
+def show_invoice(medical_record_id):
+    """Lấy thông tin phiếu khám và hiển thị trang hóa đơn."""
+    record = session.get('payment_info')
+
+    if not record or record['medical_record_id'] != str(medical_record_id):
+        print("🚨 Không tìm thấy thông tin trong session, chuyển hướng về trang chủ!")
+        return redirect('/')  # ❌ Nếu session không có, về trang chủ
+
+    return render_template('invoice.html', **record)
+
+@app.route('/api/process-payment', methods=['POST'])
+@login_required
+def process_payment():
+    """Lưu hóa đơn, cập nhật trạng thái `MedicalRecord`, và xóa session."""
+    try:
+        data = request.json
+        medical_record_id = data.get("medical_record_id")
+
+        # ✅ Kiểm tra session có dữ liệu không
+        payment_data = session.pop('payment_info', None)
+        if not payment_data or payment_data['medical_record_id'] != str(medical_record_id):
+            return jsonify({'status': 'error', 'message': 'Không tìm thấy thông tin thanh toán'})
+
+        # ✅ Gọi DAO để xử lý
+        result = dao.save_receipt_and_update_record(medical_record_id, payment_data)
+        return jsonify(result)
+    except Exception as e:
+        print(f"Lỗi khi xử lý thanh toán: {e}")
+        return jsonify({'status': 'error', 'message': 'Lỗi khi xử lý thanh toán'})
+
 @app.route('/reset_session')
 @login_required  # Yêu cầu người dùng đăng nhập
 def reset_session():
@@ -464,6 +530,7 @@ def debug_session():
     # Hiển thị nội dung session một cách đẹp mắt với định dạng JSON
     formatted_session = json.dumps(dict(session), indent=4, ensure_ascii=False)
     return f"<pre>Session hiện tại:\n{formatted_session}</pre>"
+
 
 if __name__ == "__main__":
     with app.app_context():
