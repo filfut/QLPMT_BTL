@@ -4,7 +4,7 @@
 <div class="container mt-5">
     <div class="card shadow-lg">
         <div class="card-header bg-primary text-white text-center">
-            <h3>BẢNG QUẢN TRỊ HỆ THỐNG</h3>
+            <h3>TRANG QUẢN TRỊ HỆ THỐNG</h3>
         </div>
 
         <div class="card-body">
@@ -25,7 +25,6 @@
                     <table class="table table-striped">
                         <thead class="table-dark">
                         <tr>
-                            <th>ID Phiếu Khám</th>
                             <th>Nhân viên</th>
                             <th>Tổng tiền (VND)</th>
                         </tr>
@@ -34,7 +33,6 @@
                         {% if receipts %}
                         {% for receipt in receipts %}
                         <tr>
-                            <td>{{ receipt.medical_record_id }}</td>  <!-- ✅ ID Phiếu Khám -->
                             <td>{{ receipt.employee_name }}</td>  <!-- ✅ Tên Nhân Viên -->
                             <td class="fw-bold text-success">
                                 {{ receipt.total_amount | int | default(0) }} VND  <!-- ✅ Tổng Tiền -->
@@ -43,7 +41,7 @@
                         {% endfor %}
                         {% else %}
                         <tr>
-                            <td colspan="3" class="text-center text-danger">Không có dữ liệu hôm nay</td>
+                            <td class="text-center text-danger" colspan="3">Không có dữ liệu hôm nay</td>
                         </tr>
                         {% endif %}
                         </tbody>
@@ -55,7 +53,7 @@
                     <canvas id="revenueChart"></canvas>
                 </div>
             </div>
-            {% endif %}
+            {%endif%}
         </div>
     </div>
 </div>

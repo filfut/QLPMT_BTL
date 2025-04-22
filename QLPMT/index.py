@@ -62,8 +62,12 @@ def login_my_user():
 
         user = dao.auth_user(email=email, password=password)  # Dùng email thay cho username
         if user:
-            login_user(user)
-            return redirect('/')
+            if dao.check_user_role(user.id, 2):
+                login_user(user)
+                return redirect('/admin')
+            else:
+                login_user(user)
+                return redirect('/')
         else:
             err_msg = "Email hoặc mật khẩu không chính xác!"
 
@@ -112,30 +116,6 @@ def get_user(user_id):
 def logout_my_user():
     logout_user()
     return redirect('/login')
-
-from flask import request, redirect, session, flash
-from flask_login import login_user
-import dao
-
-@app.route('/login-admin', methods=['POST'])
-def login_admin_process():
-    email = request.form.get('email')
-    password = request.form.get('password')
-
-    user = dao.auth_user(email=email, password=password)
-    if user:
-        if dao.check_user_role(user.id, 2):
-            login_user(user)
-            session['admin_logged_in'] = True
-            flash("Đăng nhập thành công!", "success")
-            return redirect('/admin')
-        else:
-            flash("Bạn không có quyền truy cập Admin!", "danger")
-            return redirect('/login')
-    else:
-        flash("Tài khoản hoặc mật khẩu không khớp!", "danger")
-        return redirect('/login')
-
 
 @app.route("/doctor_today_patients")
 @login_required  # Yêu cầu người dùng đăng nhập
@@ -516,6 +496,18 @@ def process_payment():
     except Exception as e:
         print(f"Lỗi khi xử lý thanh toán: {e}")
         return jsonify({'status': 'error', 'message': 'Lỗi khi xử lý thanh toán'})
+
+@app.route('/patient-medical-history/<int:patient_id>', methods=['GET'])
+@login_required
+def patient_medical_history(patient_id):
+    """ ✅ Hiển thị lịch sử khám bệnh của một bệnh nhân """
+    medical_records = dao.get_all_medical_records_by_patient_id(patient_id)  # ✅ Gọi hàm mới lấy dữ liệu
+
+    return render_template(
+        'patient-medical-history.html',  # ✅ Cập nhật đúng tên file
+        patient_id=patient_id,
+        medical_records=medical_records
+    )
 
 @app.route('/reset_session')
 @login_required  # Yêu cầu người dùng đăng nhập

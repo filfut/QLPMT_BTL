@@ -391,6 +391,40 @@ def save_receipt_and_update_record(medical_record_id, payment_data):
         print(f"Lỗi khi lưu hóa đơn: {e}")
         return {'status': 'error', 'message': 'Lỗi khi lưu hóa đơn'}
 
+def get_all_medical_records_by_patient_id(patient_id):
+    """ ✅ Lấy tất cả phiếu khám của một bệnh nhân dựa vào ID """
+    try:
+        patient_alias = aliased(User)
+        doctor_alias = aliased(User)
+
+        # ✅ Làm mới dữ liệu để đảm bảo lấy thông tin mới nhất
+        db.session.expire_all()
+
+        records = db.session.query(
+            MedicalRecord.id,
+            MedicalRecord.patient_id,
+            MedicalRecord.doctor_id,
+            MedicalRecord.symptoms,
+            MedicalRecord.diagnosis,
+            MedicalRecord.medical_fee,
+            MedicalRecord.total_medicine_cost,
+            MedicalRecord.appointment_date,
+            MedicalRecord.paid,  # ✅ Đảm bảo lấy trạng thái thanh toán
+            patient_alias.name.label("patient_name"),
+            doctor_alias.name.label("doctor_name")
+        ).join(
+            patient_alias, patient_alias.id == MedicalRecord.patient_id
+        ).join(
+            doctor_alias, doctor_alias.id == MedicalRecord.doctor_id
+        ).filter(MedicalRecord.patient_id == patient_id) \
+        .order_by(MedicalRecord.appointment_date.desc()) \
+        .all()
+
+        return records
+    except Exception as e:
+        print(f"Lỗi khi lấy phiếu khám theo ID bệnh nhân ({patient_id}): {e}")
+        return []
+
 if __name__ == "__main__":
     with app.app_context():
         receipts = get_receipts_today()  # ✅ Gọi hàm đúng cách

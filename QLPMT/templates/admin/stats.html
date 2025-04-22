@@ -4,7 +4,7 @@
 <div class="container mt-5">
     <div class="card shadow-lg">
         <div class="card-header bg-primary text-white text-center">
-            <h3>BÁO CÁO DOANH THU THÁNG {{ month }}</h3>
+            <h3>BÁO CÁO DOANH THU VÀ SỬ DỤNG THUỐC THÁNG {{ month }}</h3>
         </div>
 
         <div class="card-body">
@@ -22,46 +22,91 @@
                 <span class="text-success">{{ total_revenue | int | default(0) }} VND</span>
             </h4>
 
+            <!-- ✅ Bảng thống kê doanh thu -->
             <div class="row">
                 <div class="col-md-6">
                     <h4>Bảng thống kê doanh thu</h4>
                     <table class="table table-striped">
                         <thead class="table-dark">
-    <tr>
-        <th>STT</th>
-        <th>Ngày</th>
-        <th>Số bệnh nhân</th>
-        <th>Doanh thu (VND)</th>
-        <th>Tỷ lệ doanh thu (%)</th>  <!-- ✅ Thêm cột tỷ lệ -->
-    </tr>
-</thead>
-<tbody>
-    {% if receipts %}
-        {% for receipt in receipts %}
-        <tr>
-            <td>{{ loop.index }}</td>
-            <td>{{ receipt.date }}</td>
-            <td>{{ receipt.patient_count }}</td>
-            <td class="fw-bold text-success">
-                {{ receipt.total_revenue | int | default(0) }} VND
-            </td>
-            <td class="fw-bold text-info">
-                {{ receipt.percentage | round(2) }}%  <!-- ✅ Hiển thị phần trăm, làm tròn 2 chữ số -->
-            </td>
-        </tr>
-        {% endfor %}
-    {% else %}
-        <tr>
-            <td colspan="5" class="text-center text-danger">Không có dữ liệu</td>
-        </tr>
-    {% endif %}
-</tbody>
+                            <tr>
+                                <th>STT</th>
+                                <th>Ngày</th>
+                                <th>Số bệnh nhân</th>
+                                <th>Doanh thu (VND)</th>
+                                <th>Tỷ lệ doanh thu (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if receipts %}
+                                {% for receipt in receipts %}
+                                <tr>
+                                    <td>{{ loop.index }}</td>
+                                    <td>{{ receipt.date }}</td>
+                                    <td>{{ receipt.patient_count }}</td>
+                                    <td class="fw-bold text-success">
+                                        {{ receipt.total_revenue | int | default(0) }} VND
+                                    </td>
+                                    <td class="fw-bold text-info">
+                                        {{ receipt.percentage | round(2) }}%
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="5" class="text-center text-danger">Không có dữ liệu</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
                     </table>
                 </div>
 
+                <!-- ✅ Biểu đồ doanh thu -->
                 <div class="col-md-6">
                     <h4>Biểu đồ doanh thu theo ngày</h4>
                     <canvas id="revenueChart"></canvas>
+                </div>
+            </div>
+
+            <hr class="mt-5">
+
+            <!-- ✅ Bảng thống kê sử dụng thuốc -->
+            <div class="row">
+                <div class="col-md-6">
+                    <h4>BÁO CÁO SỬ DỤNG THUỐC</h4>
+                    <table class="table table-striped">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>STT</th>
+                                <th>Thuốc</th>
+                                <th>Loại thuốc</th>
+                                <th>Số lượng</th>
+                                <th>Số lần kê đơn</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if drug_reports %}
+                                {% for drug in drug_reports %}
+                                <tr>
+                                    <td>{{ loop.index }}</td>
+                                    <td>{{ drug.name }}</td>
+                                    <td>{{ drug.type }}</td>
+                                    <td>{{ drug.quantity }}</td>
+                                    <td>{{ drug.usage_count }}</td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="5" class="text-center text-danger">Không có dữ liệu thuốc</td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ✅ Biểu đồ sử dụng thuốc -->
+                <div class="col-md-6">
+                    <h4>Biểu đồ sử dụng thuốc</h4>
+                    <canvas id="medicineChart"></canvas>
                 </div>
             </div>
         </div>
@@ -80,9 +125,17 @@
         revenueData.push({{ receipt.total_revenue }});
     {% endfor %}
 
+    let drugLabels = [];
+    let drugQuantities = [];
+
+    {% for drug in drug_reports %}
+        drugLabels.push('{{ drug.name }}');
+        drugQuantities.push({{ drug.quantity }});
+    {% endfor %}
+
     window.onload = function(){
-        const ctx = document.getElementById('revenueChart');
-        new Chart(ctx, {
+        const ctxRevenue = document.getElementById('revenueChart');
+        new Chart(ctxRevenue, {
             type: 'bar',
             data: {
                 labels: labels,
@@ -102,6 +155,26 @@
                 scales: {
                     y: { beginAtZero: true }
                 }
+            }
+        });
+
+        const ctxMedicine = document.getElementById('medicineChart');
+        new Chart(ctxMedicine, {
+            type: 'pie',
+            data: {
+                labels: drugLabels,
+                datasets: [{
+                    label: 'Số lượng thuốc',
+                    data: drugQuantities,
+                    borderWidth: 1,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(153, 102, 255, 0.6)',
+                        'rgba(255, 159, 64, 0.6)'
+                    ]
+                }]
             }
         });
     }

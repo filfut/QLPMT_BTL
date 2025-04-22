@@ -2,7 +2,7 @@
 
 {% block content %}
 <div class="container mt-4">
-    <h2 class="text-center text-primary">📋 Danh sách phiếu khám bệnh ngày {{ selected_date }}</h2>
+    <h2 class="text-center text-primary">📋 Lịch Sử Khám Bệnh Của Bệnh Nhân {{ patient_name }}</h2>
 
     {% if medical_records %}
     <table class="table table-bordered table-hover text-center align-middle">
@@ -17,7 +17,6 @@
                 <th>Tiền Khám</th>
                 <th>Tổng Tiền (VND)</th>
                 <th>Trạng Thái</th>
-                <th>Thanh Toán</th>
             </tr>
         </thead>
         <tbody>
@@ -38,23 +37,22 @@
                     <span class="badge bg-warning text-dark">⏳ Chưa thanh toán</span>
                 {% endif %}
             </td>
-            <td>
-                {% if record.paid|int == 1 %}
-                    <span>✅</span>
-                {% else %}
-                    <button class="btn btn-success btn-sm" onclick="storePaymentInfo('{{ record.id }}', '{{ record.patient_name }}', '{{ record.appointment_date }}', '{{ record.total_medicine_cost }}', '{{ record.medical_fee }}')">
-                        💳 Thanh Toán
-                    </button>
-                {% endif %}
-            </td>
         </tr>
         {% endfor %}
         </tbody>
     </table>
     {% else %}
     <div class="alert alert-warning text-center">
-        <strong>⚠ Không có phiếu khám bệnh nào hôm nay.</strong>
+        <strong>⚠ Không có lịch sử khám bệnh nào cho bệnh nhân này.</strong>
     </div>
     {% endif %}
+
+    <!-- ✅ Nút Trở Về lớn ở giữa -->
+    <div class="text-center mt-4">
+        <a href="/doctor_today_patients" class="btn btn-lg btn-primary">
+            🔙 Trở Về
+        </a>
+    </div>
+
 </div>
 {% endblock %}
